@@ -12,13 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @Description:
  */
 @SpringBootTest
-public class Demo2 {
+public class Demo3 {
     @Autowired
     private OpenAiChatModel openAiChatModel ;
     @Test
     public void testSpringBoot() {
         //向模型提问
-        String answer = openAiChatModel.chat("你好") ;
+        String answer = openAiChatModel.chat("介绍一下你自己") ;
         //输出结果
         System.out.println(answer) ;
     }
