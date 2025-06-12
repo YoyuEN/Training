@@ -1,0 +1,12 @@
+com\hospital\app\config\AssistantConfig.class
+com\hospital\app\domain\ChatForm.class
+com\hospital\app\domain\ChatMessages.class
+com\hospital\app\assistant\Assistant.class
+com\hospital\app\HospitalApp.class
+com\hospital\app\controller\HospitalController.class
+com\hospital\app\service\AppointmentService.class
+com\hospital\app\dao\AppointmentMapper.class
+com\hospital\app\domain\Appointment.class
+com\hospital\app\store\HospitalChatMemoryStore.class
+com\hospital\app\service\impl\AppointmentServiceImpl.class
+com\hospital\app\tools\AssistantTools.class
