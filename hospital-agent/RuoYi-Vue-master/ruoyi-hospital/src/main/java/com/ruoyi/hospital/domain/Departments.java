@@ -34,7 +34,7 @@ public class Departments implements Serializable {
     @TableId
     private String deptId;
     private String deptName;
-    private Integer hospitalId;
+    private String hospitalId;
     private String description;
     private String createTime;
     private String updateTime;

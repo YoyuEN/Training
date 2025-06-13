@@ -1,5 +1,6 @@
 package com.ruoyi.hospital.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Author: YoyuEN
@@ -43,6 +45,8 @@ public class Hospitals implements Serializable {
     private String description;
     private String createTime;
     private String updateTime;
+    @TableField(exist = false) //属性不对应实体表中的字段
+    private List<Departments> departments;
     @TableLogic
     private Integer deleted;
 
