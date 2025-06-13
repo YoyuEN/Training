@@ -1,9 +1,9 @@
 package com.ruoyi.hospital.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 
@@ -31,8 +31,8 @@ CREATE TABLE departments
 @NoArgsConstructor
 public class Departments implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    private Integer deptId;
+    @TableId
+    private String deptId;
     private String deptName;
     private Integer hospitalId;
     private String description;

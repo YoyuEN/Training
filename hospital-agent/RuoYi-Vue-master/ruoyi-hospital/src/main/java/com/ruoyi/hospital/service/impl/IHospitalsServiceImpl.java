@@ -1,9 +1,14 @@
 package com.ruoyi.hospital.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.hospital.domain.Hospitals;
 import com.ruoyi.hospital.mapper.HospitalsMapper;
 import com.ruoyi.hospital.service.IHospitalsService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Author: YoyuEN
@@ -11,5 +16,12 @@ import com.ruoyi.hospital.service.IHospitalsService;
  * @Time: 15:01
  * @Description:
  */
+@Service
 public class IHospitalsServiceImpl extends ServiceImpl<HospitalsMapper, Hospitals> implements IHospitalsService {
+    @Override
+    public List<Hospitals> selectHospitalsList(Hospitals hospitals) {
+        LambdaQueryWrapper<Hospitals> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.like(StringUtils.isNotEmpty(hospitals.getHospitalName()), Hospitals::getHospitalName, hospitals.getHospitalName());
+        return super.list(lambdaQueryWrapper);
+    }
 }

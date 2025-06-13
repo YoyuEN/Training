@@ -3,6 +3,8 @@ package com.ruoyi.hospital.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoyi.hospital.domain.Hospitals;
 
+import java.util.List;
+
 /**
  * @Author: YoyuEN
  * @Date: 2025/6/12
@@ -10,4 +12,5 @@ import com.ruoyi.hospital.domain.Hospitals;
  * @Description:
  */
 public interface IHospitalsService extends IService<Hospitals> {
+    List<Hospitals> selectHospitalsList(Hospitals hospitals);
 }
