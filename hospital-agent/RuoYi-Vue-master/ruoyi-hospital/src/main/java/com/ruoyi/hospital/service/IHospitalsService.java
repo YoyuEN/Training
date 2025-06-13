@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface IHospitalsService extends IService<Hospitals> {
     List<Hospitals> selectHospitalsList(Hospitals hospitals);
+    boolean add(Hospitals hospitals);
 }
