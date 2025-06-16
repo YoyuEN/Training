@@ -63,6 +63,13 @@
 
     <el-table v-loading="loading" :data="hospitalsList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
+      <el-table-column type="expand" align="center" prop="description">
+        <template v-slot="scope">
+          <el-card>
+            {{scope.row.description}}
+          </el-card>
+        </template>
+      </el-table-column>
       <el-table-column label="医院名称" align="center" prop="hospitalName" />
       <el-table-column label="医院等级" align="center" prop="hospitalLevel">
         <template slot-scope="scope">
@@ -71,7 +78,6 @@
       </el-table-column>
       <el-table-column label="地址" align="center" prop="address" />
       <el-table-column label="联系电话" align="center" prop="phone" />
-      <el-table-column label="医院简介" align="center" prop="description" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button

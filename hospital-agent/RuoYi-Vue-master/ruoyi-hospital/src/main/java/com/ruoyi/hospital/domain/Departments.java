@@ -1,6 +1,7 @@
 package com.ruoyi.hospital.domain;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,5 +39,6 @@ public class Departments implements Serializable {
     private String description;
     private String createTime;
     private String updateTime;
+    @TableLogic
     private Integer deleted;
 }

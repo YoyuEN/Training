@@ -54,11 +54,19 @@ public class HospitalsController extends BaseController
     /**
      * 获取医院信息详细信息
      */
-    @PreAuthorize("@ss.hasPermi('hospitals:hospitals:query')")
+    @PreAuthorize("@ss.hasPermi('hospitals:hospitals:search')")
     @GetMapping(value = "/{hospitalId}")
-    public AjaxResult getInfo(@PathVariable("hospitalId") Long hospitalId)
+    public AjaxResult getInfo(@PathVariable("hospitalId") String hospitalId)
     {
-        return success(hospitalsService.getById(hospitalId));
+        return success(hospitalsService.getInfo(hospitalId));
+    }
+    /*
+    *  初始化科室添加时选择医院的下拉列表
+    * */
+    @PreAuthorize("@ss.hasPermi('hospitals:hospitals:getListHospitals')")
+    @GetMapping("/getListHospitals")
+    public AjaxResult getListHospitals() {
+        return success(hospitalsService.list());
     }
 
     /**
@@ -69,7 +77,7 @@ public class HospitalsController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody Hospitals hospitals)
     {
-        return toAjax(hospitalsService.save(hospitals));
+        return toAjax(hospitalsService.add(hospitals));
     }
 
     /**
@@ -80,7 +88,7 @@ public class HospitalsController extends BaseController
     @PutMapping
     public AjaxResult edit(@RequestBody Hospitals hospitals)
     {
-        return toAjax(hospitalsService.updateById(hospitals));
+        return toAjax(hospitalsService.edit(hospitals));
     }
 
     /**
@@ -89,7 +97,7 @@ public class HospitalsController extends BaseController
     @PreAuthorize("@ss.hasPermi('hospitals:hospitals:remove')")
     @Log(title = "医院信息", businessType = BusinessType.DELETE)
     @DeleteMapping("/{hospitalIds}")
-    public AjaxResult remove(@PathVariable List<Long> hospitalIds)
+    public AjaxResult remove(@PathVariable List<String> hospitalIds)
     {
         return toAjax(hospitalsService.removeBatchByIds(hospitalIds));
     }

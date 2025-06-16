@@ -8,6 +8,12 @@ export function listHospitals(query) {
     params: query
   })
 }
+export function getListHospitals() {
+  return request({
+    url: '/hospitals/hospitals/getListHospitals',
+    method: 'get'
+  })
+}
 
 // 查询医院信息详细
 export function getHospitals(hospitalId) {
@@ -42,3 +48,4 @@ export function delHospitals(hospitalId) {
     method: 'delete'
   })
 }
+

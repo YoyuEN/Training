@@ -2,6 +2,9 @@ package com.ruoyi.hospital.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.ruoyi.hospital.domain.Doctors;
+import com.ruoyi.hospital.domain.dto.DoctorsDTO;
+
+import java.util.List;
 
 /**
  * @Author: YoyuEN
@@ -10,4 +13,5 @@ import com.ruoyi.hospital.domain.Doctors;
  * @Description:
  */
 public interface IDoctorsService extends IService<Doctors> {
+    List<DoctorsDTO> selectDoctorsList(Doctors doctors);
 }

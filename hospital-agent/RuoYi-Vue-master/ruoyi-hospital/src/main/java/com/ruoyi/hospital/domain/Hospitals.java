@@ -37,7 +37,7 @@ CREATE TABLE hospitals
 public class Hospitals implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableId
-    private String  hospitalId;
+    private String hospitalId;
     private String hospitalName;
     private String hospitalLevel;
     private String address;
@@ -46,7 +46,7 @@ public class Hospitals implements Serializable {
     private String createTime;
     private String updateTime;
     @TableField(exist = false) //属性不对应实体表中的字段
-    private List<Departments> departments;
+    private List<Departments> departmentsList;
     @TableLogic
     private Integer deleted;
 

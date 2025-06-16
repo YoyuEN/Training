@@ -36,8 +36,9 @@ CREATE TABLE doctors
 public class Doctors implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableId
-    private Integer doctorId;
-    private Integer deptId;
+    private String doctorId;
+    private String deptId;
+    private String name;
     private String title;
     private String specialty;
     private Integer workYears;
