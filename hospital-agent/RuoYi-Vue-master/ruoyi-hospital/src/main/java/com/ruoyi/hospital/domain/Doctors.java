@@ -1,6 +1,8 @@
 package com.ruoyi.hospital.domain;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.ruoyi.common.annotation.Excel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,15 +39,23 @@ public class Doctors implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableId
     private String doctorId;
-    private String deptId;
+    @Excel(name = "医生姓名")
     private String name;
+    private String deptId;
+    @Excel(name = "医生职称")
     private String title;
+    @Excel(name = "擅长领域")
     private String specialty;
+    @Excel(name = "从业年限")
     private Integer workYears;
+    @Excel(name = "挂号费")
     private Double consultationFee;
+    @Excel(name = "医生简介")
     private String introduction;
+    @Excel(name = "创建时间")
     private String createTime;
+    @Excel(name = "更新时间")
     private String updateTime;
-
+    @TableLogic
     private Integer deleted;
 }

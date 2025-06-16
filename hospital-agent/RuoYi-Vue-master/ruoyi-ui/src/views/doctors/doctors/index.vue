@@ -116,23 +116,54 @@
     />
 
     <!-- 添加或修改医生管理对话框 -->
-    <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
+    <el-dialog :title="title" :visible.sync="open" width="800px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="职称" prop="title">
-          <el-input v-model="form.title" placeholder="请输入职称" />
-        </el-form-item>
-        <el-form-item label="擅长领域" prop="specialty">
-          <el-input v-model="form.specialty" placeholder="请输入擅长领域" />
-        </el-form-item>
-        <el-form-item label="从业年限" prop="workYears">
-          <el-input v-model="form.workYears" placeholder="请输入从业年限" />
-        </el-form-item>
-        <el-form-item label="挂号费" prop="consultationFee">
-          <el-input v-model="form.consultationFee" placeholder="请输入挂号费" />
-        </el-form-item>
-        <el-form-item label="医生简介" prop="introduction">
-          <el-input v-model="form.introduction" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
+        <el-row :gutter="5">
+          <el-col :span="12">
+            <el-form-item label="医生名称" prop="name">
+              <el-input v-model="form.name" placeholder="请输入医生名称" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="所属科室" prop="deptId">
+              <el-select v-model="form.deptId" placeholder="请选择所属科室" style="width: 100%">
+                <el-option
+                  v-for="item in departmentsList"
+                  :key="item.deptId"
+                  :label="item.deptName"
+                  :value="item.deptId"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="职称" prop="title">
+              <el-input v-model="form.title" placeholder="请输入职称" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="擅长领域" prop="specialty">
+              <el-input v-model="form.specialty" placeholder="请输入擅长领域" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="从业年限" prop="workYears">
+              <el-input-number aria-readonly="true" v-model="form.workYears" placeholder="请输入从业年限" style="width: 100%"/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="挂号费" prop="consultationFee">
+              <el-input-number aria-readonly="true" v-model="form.consultationFee" placeholder="请输入挂号费" style="width: 100%"/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="5">
+          <el-col >
+            <el-form-item label="医生简介" prop="introduction">
+              <editor v-model="form.introduction" type="textarea" placeholder="请输入内容" />
+            </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -144,11 +175,13 @@
 
 <script>
 import { listDoctors, getDoctors, delDoctors, addDoctors, updateDoctors } from "@/api/doctors/doctors";
+import { getDepartmentsList} from "@/api/departments/departments";
 
 export default {
   name: "Doctors",
   data() {
     return {
+      departmentsList: [],
       // 遮罩层
       loading: true,
       // 选中数组
@@ -203,8 +236,15 @@ export default {
   },
   created() {
     this.getList();
+    this.getDepartmentsList();
   },
   methods: {
+    /* */
+    getDepartmentsList()  {
+      getDepartmentsList().then(response => {
+        this.departmentsList = response.data;
+      });
+    },
     /** 查询医生管理列表 */
     getList() {
       this.loading = true;

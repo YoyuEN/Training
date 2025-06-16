@@ -1,5 +1,6 @@
 package com.ruoyi.hospital.domain.dto;
 
+import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.hospital.domain.Doctors;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ import lombok.Data;
  */
 @Data
 public class DoctorsDTO extends Doctors {
+    @Excel(name="所属科室")
     private String deptName;
 
 }

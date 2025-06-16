@@ -39,6 +39,17 @@ public class DepartmentsController extends BaseController
         return getDataTable(list);
     }
 
+    /*
+    * 获取所有科室信息，初始化医生添加对话框的下拉列表
+    *
+    * */
+    @PreAuthorize("@ss.hasPermi('departments:departments:getDepartmentsList')")
+    @GetMapping("/getDepartmentsList")
+    public AjaxResult getDepartmentsList()
+    {
+        return success(departmentsService.list());
+    }
+
 
     /**
      * 获取科室管理详细信息

@@ -42,3 +42,11 @@ export function delDepartments(deptId) {
     method: 'delete'
   })
 }
+
+//获取所有科室信息
+export function getDepartmentsList() {
+  return request({
+    url: '/departments/departments/getDepartmentsList',
+    method: 'get'
+  })
+}
