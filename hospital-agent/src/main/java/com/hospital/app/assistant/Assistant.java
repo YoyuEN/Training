@@ -12,7 +12,8 @@ import reactor.core.publisher.Flux;
 @AiService(wiringMode = AiServiceWiringMode.EXPLICIT,
         streamingChatModel = "qwenStreamingChatModel",
         chatMemoryProvider = "chatMemoryProvider",
-        tools = "assistantTools")
+        tools = "assistantTools",
+        chatMemory = "chatMemory")
 public interface Assistant {
 
     @SystemMessage(fromResource = "lm-prompt-template.txt")

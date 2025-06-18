@@ -6,6 +6,7 @@ import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.poi.ExcelUtil;
+import com.ruoyi.common.utils.uuid.UUID;
 import com.ruoyi.hospital.domain.Doctors;
 import com.ruoyi.hospital.domain.dto.DoctorsDTO;
 import com.ruoyi.hospital.service.IDoctorsService;
@@ -41,6 +42,12 @@ public class DoctorsController extends BaseController
         return getDataTable(list);
     }
 
+    @PreAuthorize("@ss.hasPermi('doctors:doctors:searchDeptIdDoctors')")
+    @GetMapping("/searchDeptIdDoctors/{deptId}")
+    public AjaxResult searchDeptIdDoctors(@PathVariable("deptId") String deptId) {
+        return success(doctorsService.searchDeptIdDoctors(deptId));
+    }
+
     /**
      * 导出医生管理列表
      */
@@ -72,6 +79,7 @@ public class DoctorsController extends BaseController
     @PostMapping
     public AjaxResult add(@RequestBody Doctors doctors)
     {
+        doctors.setDoctorId(UUID.fastUUID().toString());
         return toAjax(doctorsService.save(doctors));
     }
 

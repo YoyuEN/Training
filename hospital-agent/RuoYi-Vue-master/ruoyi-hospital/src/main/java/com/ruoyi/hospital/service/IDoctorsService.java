@@ -14,4 +14,6 @@ import java.util.List;
  */
 public interface IDoctorsService extends IService<Doctors> {
     List<DoctorsDTO> selectDoctorsList(Doctors doctors);
+
+    List<Doctors> searchDeptIdDoctors(String deptId);
 }

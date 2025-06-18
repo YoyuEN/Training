@@ -63,4 +63,11 @@ public class IHospitalsServiceImpl extends ServiceImpl<HospitalsMapper, Hospital
         return hospitals;
     }
 
+    @Override
+    public Hospitals getHospitalByName(String hospitalName) {
+        LambdaQueryWrapper<Hospitals> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(Hospitals::getHospitalName, hospitalName);
+        return super.getOne(lambdaQueryWrapper);
+    }
+
 }

@@ -41,4 +41,11 @@ public class IDoctorsServiceImpl extends ServiceImpl<DoctorsMapper, Doctors> imp
         });
         return doctorsDTOList;
     }
+    //根据科室的ID查询科室的医生
+    @Override
+    public List<Doctors> searchDeptIdDoctors(String deptId) {
+        LambdaQueryWrapper<Doctors> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(StringUtils.isNotEmpty(deptId),Doctors::getDeptId,deptId);
+        return list(lambdaQueryWrapper);
+    }
 }

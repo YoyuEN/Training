@@ -32,7 +32,8 @@
           size="mini"
           @click="handleAdd"
           v-hasPermi="['departments:departments:add']"
-        >新增</el-button>
+        >新增
+        </el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -43,7 +44,8 @@
           :disabled="single"
           @click="handleUpdate"
           v-hasPermi="['departments:departments:edit']"
-        >修改</el-button>
+        >修改
+        </el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -54,7 +56,8 @@
           :disabled="multiple"
           @click="handleDelete"
           v-hasPermi="['departments:departments:remove']"
-        >删除</el-button>
+        >删除
+        </el-button>
       </el-col>
       <el-col :span="1.5">
         <el-button
@@ -64,16 +67,17 @@
           size="mini"
           @click="handleExport"
           v-hasPermi="['departments:departments:export']"
-        >导出</el-button>
+        >导出
+        </el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="departmentsList" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="科室名称" align="center" prop="deptName" />
-      <el-table-column label="所属医院" align="center" prop="hospitalsName" />
-      <el-table-column label="科室简介" align="center" prop="description" />
+      <el-table-column type="selection" width="55" align="center"/>
+      <el-table-column label="科室名称" align="center" prop="deptName"/>
+      <el-table-column label="所属医院" align="center" prop="hospitalsName"/>
+      <el-table-column label="科室简介" align="center" prop="description"/>
       <el-table-column label="创建时间" align="center" prop="createTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.createTime, '{y}-{m}-{d}') }}</span>
@@ -92,14 +96,16 @@
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['departments:departments:edit']"
-          >修改</el-button>
+          >修改
+          </el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['departments:departments:remove']"
-          >删除</el-button>
+          >删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -117,11 +123,12 @@
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="所属医院" prop="hospitalId">
           <el-select v-model="form.hospitalId" style="width: 100%" placeholder="请选择所属医院">
-            <el-option  v-for="item in hospitalsList" :key="item.hospitalId" :value="item.hospitalId" :label="item.hospitalName"/>
+            <el-option v-for="item in hospitalsList" :key="item.hospitalId" :value="item.hospitalId"
+                       :label="item.hospitalName"/>
           </el-select>
         </el-form-item>
         <el-form-item label="科室名称" prop="deptName">
-          <el-input v-model="form.deptName" placeholder="请输入科室名称" />
+          <el-input v-model="form.deptName" placeholder="请输入科室名称"/>
         </el-form-item>
         <el-form-item label="科室简介">
           <editor v-model="form.description" :min-height="192"/>
@@ -136,8 +143,14 @@
 </template>
 
 <script>
-import { listDepartments, getDepartments, delDepartments, addDepartments, updateDepartments } from "@/api/departments/departments";
-import { getListHospitals} from "@/api/hospitals/hospitals";
+import {
+  listDepartments,
+  getDepartments,
+  delDepartments,
+  addDepartments,
+  updateDepartments
+} from "@/api/departments/departments";
+import {getListHospitals} from "@/api/hospitals/hospitals";
 
 export default {
   name: "Departments",
@@ -174,13 +187,13 @@ export default {
       // 表单校验
       rules: {
         deptName: [
-          { required: true, message: "科室名称不能为空", trigger: "blur" }
+          {required: true, message: "科室名称不能为空", trigger: "blur"}
         ],
         hospitalId: [
-          { required: true, message: "所属医院ID不能为空", trigger: "blur" }
+          {required: true, message: "所属医院ID不能为空", trigger: "blur"}
         ],
         description: [
-          { required: true, message: "科室简介不能为空", trigger: "blur" }
+          {required: true, message: "科室简介不能为空", trigger: "blur"}
         ],
       }
     };
@@ -236,7 +249,7 @@ export default {
     // 多选框选中数据
     handleSelectionChange(selection) {
       this.ids = selection.map(item => item.deptId)
-      this.single = selection.length!==1
+      this.single = selection.length !== 1
       this.multiple = !selection.length
     },
     /** 新增按钮操作 */
@@ -278,12 +291,13 @@ export default {
     /** 删除按钮操作 */
     handleDelete(row) {
       const deptIds = row.deptId || this.ids;
-      this.$modal.confirm('是否确认删除科室管理编号为"' + deptIds + '"的数据项？').then(function() {
+      this.$modal.confirm('是否确认删除科室管理编号为"' + deptIds + '"的数据项？').then(function () {
         return delDepartments(deptIds);
       }).then(() => {
         this.getList();
         this.$modal.msgSuccess("删除成功");
-      }).catch(() => {});
+      }).catch(() => {
+      });
     },
     /** 导出按钮操作 */
     handleExport() {

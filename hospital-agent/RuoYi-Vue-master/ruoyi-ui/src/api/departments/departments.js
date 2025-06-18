@@ -50,3 +50,11 @@ export function getDepartmentsList() {
     method: 'get'
   })
 }
+
+//根据医院ID找科室
+export function getDepartmentsByHospitalName(hospitalId) {
+  return request({
+    url: '/departments/departments/getDepartmentsByHospitalName/' + hospitalId,
+    method: 'get'
+  })
+}

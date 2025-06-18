@@ -9,6 +9,14 @@ export function listDoctors(query) {
   })
 }
 
+export function searchDeptNameDoctors(deptId) {
+  return request({
+    url: '/doctors/doctors/searchDeptNameDoctors/' + deptId,
+    method: 'get'
+  })
+}
+
+
 // 查询医生管理详细
 export function getDoctors(doctorId) {
   return request({

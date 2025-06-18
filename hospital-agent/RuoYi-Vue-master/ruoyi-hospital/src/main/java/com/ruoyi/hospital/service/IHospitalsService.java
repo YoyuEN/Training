@@ -16,4 +16,5 @@ public interface IHospitalsService extends IService<Hospitals> {
     List<Hospitals> selectHospitalsList(Hospitals hospitals);
     boolean add(Hospitals hospitals);
     Hospitals getInfo(String hospitalId);
+    Hospitals getHospitalByName(String hospitalName);
 }

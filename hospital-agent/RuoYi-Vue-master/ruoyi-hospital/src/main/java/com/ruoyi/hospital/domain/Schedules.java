@@ -1,6 +1,7 @@
 package com.ruoyi.hospital.domain;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.ruoyi.common.annotation.Excel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,22 +44,53 @@ CREATE TABLE schedules
 public class Schedules implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableId
-    private Integer scheduleId;
-    private Integer doctorId;
+    //  排班ID
+    private String scheduleId;
+    //  医生ID
+    private String doctorId;
+    //  排班日期
+    @Excel(name = "排班日期")
     private String date;
+    @Excel(name = "上午开始时间")
+    //  上午开始时间
     private String morningStart;
+    //  上午结束时间
+    @Excel(name = "上午结束时间")
     private String morningEnd;
+    //  下午开始时间
+    @Excel(name = "下午开始时间")
     private String afternoonStart;
+    //  下午结束时间
+    @Excel(name = "下午结束时间")
     private String afternoonEnd;
+    //  夜间开始时间
+    @Excel(name = "夜间开始时间")
     private String nightStart;
+    //  夜间结束时间
+    @Excel(name = "夜间结束时间")
     private String nightEnd;
-    private Integer morningQuota;
-    private Integer afternoonQuota;
-    private Integer nightQuota;
-    private Integer morningRemaining;
-    private Integer afternoonRemaining;
-    private Integer nightRemaining;
+    //  上午号源数量
+    @Excel(name = "上午号源数量")
+    private String morningQuota;
+    //  下午号源数量
+    @Excel(name = "下午号源数量")
+    private String afternoonQuota;
+    //  夜间号源数量
+    @Excel(name = "夜间号源数量")
+    private String nightQuota;
+    //  上午剩余号源
+    @Excel(name = "上午剩余号源")
+    private String morningRemaining;
+    //  下午剩余号源
+    @Excel(name = "下午剩余号源")
+    private String afternoonRemaining;
+    //  夜间剩余号源
+    @Excel(name = "夜间剩余号源")
+    private String nightRemaining;
+    //  创建时间
     private String createTime;
+    //  更新时间
     private String updateTime;
+    //  删除标志（0=未删除，1=已删除）
     private Integer deleted;
 }

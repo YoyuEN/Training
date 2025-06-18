@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.hospital.mapper.AppointmentsMapper">
+    <!--    统计不同科室的预约人数-->
+    <select id="countAppointmentsByDeptNameAndDate" resultType="com.ruoyi.hospital.domain.dto.AppointmentsDTO">
+        SELECT dept_name             AS dept_name,
+               DATE(create_time)     AS appointment_date,
+               COUNT(appointment_id) AS appointment_count
+        FROM appointments
+        WHERE create_time IS NOT NULL
+        GROUP BY dept_name, DATE(create_time)
+        ORDER BY appointment_date, dept_name;
+    </select>
+    <!--    统计不同医生每天的预约人数-->
+    <select id="countAppointmentsByDoctorNameAndDate" resultType="com.ruoyi.hospital.domain.dto.AppointmentsDTO">
+        SELECT doctor_name           AS doctor_name,
+               DATE(create_time)     AS appointment_date,
+               COUNT(appointment_id) AS appointment_count
+        FROM appointments
+        WHERE create_time IS NOT NULL
+        GROUP BY doctor_name, DATE(create_time)
+        ORDER BY appointment_date, doctor_name;
+    </select>
+    <select id="countAppointmentsByHospitalNameAndTime" resultType="com.ruoyi.hospital.domain.dto.AppointmentsDTO">
+        SELECT hospital_name         AS hospital_name,
+               DATE(time_slot)             AS time_slot,
+               COUNT(appointment_id) AS appointment_count
+        FROM appointments
+        WHERE time_slot IS NOT NULL
+        GROUP BY hospital_name, time_slot
+        ORDER BY hospital_name, time_slot;
+    </select>
+    <select id="countAppointmentsByDeptNameAndTime" resultType="com.ruoyi.hospital.domain.dto.AppointmentsDTO">
+        SELECT dept_name             AS dept_name,
+               DATE(time_slot)             AS time_slot,
+               COUNT(appointment_id) AS appointment_count
+        FROM appointments
+        WHERE time_slot IS NOT NULL
+        GROUP BY dept_name, time_slot
+        ORDER BY dept_name, time_slot;
+    </select>
+</mapper>

@@ -93,4 +93,22 @@ public class DepartmentsController extends BaseController
     {
         return toAjax(departmentsService.removeBatchByIds(deptIds));
     }
+
+    /*
+    * 根据医院名称查询医院ID再查询科室信息
+    * */
+    @PreAuthorize("@ss.hasPermi('departments:departments:getDepartmentsByHospitalName')")
+    @GetMapping("/getDepartmentsByHospitalName/{hospitalName}")
+    public AjaxResult getDepartmentsByHospitalName(@PathVariable("hospitalName") String hospitalName) {
+        return success(departmentsService.getDepartmentsByHospitalName(hospitalName));
+    }
+
+    /*
+    * 根据科室名称查询医生信息
+    * */
+    @PreAuthorize("@ss.hasPermi('departments:departments:searchDeptNameDoctors')")
+    @GetMapping("/searchDeptNameDoctors/{deptName}")
+    public AjaxResult searchDeptNameDoctors(@PathVariable("deptName") String deptName) {
+        return success(departmentsService.searchDeptNameDoctors(deptName));
+    }
 }

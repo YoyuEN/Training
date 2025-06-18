@@ -26,28 +26,28 @@
           v-hasPermi="['hospitals:hospitals:add']"
         >新增</el-button>
       </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['hospitals:hospitals:edit']"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['hospitals:hospitals:remove']"
-        >删除</el-button>
-      </el-col>
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="success"-->
+<!--          plain-->
+<!--          icon="el-icon-edit"-->
+<!--          size="mini"-->
+<!--          :disabled="single"-->
+<!--          @click="handleUpdate"-->
+<!--          v-hasPermi="['hospitals:hospitals:edit']"-->
+<!--        >修改</el-button>-->
+<!--      </el-col>-->
+<!--      <el-col :span="1.5">-->
+<!--        <el-button-->
+<!--          type="danger"-->
+<!--          plain-->
+<!--          icon="el-icon-delete"-->
+<!--          size="mini"-->
+<!--          :disabled="multiple"-->
+<!--          @click="handleDelete"-->
+<!--          v-hasPermi="['hospitals:hospitals:remove']"-->
+<!--        >删除</el-button>-->
+<!--      </el-col>-->
       <el-col :span="1.5">
         <el-button
           type="warning"
@@ -321,11 +321,11 @@ export default {
     },
     /** 科室信息添加按钮操作 */
     handleAddDepartments() {
-      let obj = {};
-      obj.deptName = "";
-      obj.description = "";
-      obj.deleted = "";
-      this.departmentsList.push(obj);
+      // let obj = {};
+      // obj.deptName = "";
+      // obj.description = "";
+      // obj.deleted = "";
+      this.departmentsList.push({ deptName: "" });
     },
     /** 科室信息删除按钮操作 */
     handleDeleteDepartments() {
